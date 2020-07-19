@@ -12,10 +12,11 @@ from email.mime.text import MIMEText
 from util.config import ini_info
 from application import emailfile, mail_host, mail_user, mail_pass, mail_postfix
 import sys
-from importlib import reload
 if sys.version[0] == '2':
     reload(sys)
     sys.setdefaultencoding("utf-8")
+else:
+    from importlib import reload
 
 
 def maillists():

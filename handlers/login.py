@@ -45,7 +45,7 @@ class AuthHandler(BaseHandler):
             if self.request.body:
                 # print self.request.body
                 data = json.loads(self.request.body.decode('utf-8'))
-                print(data)
+                # print(data)
                 try:
                     username = data["username"]
                     password = data["password"]
@@ -57,10 +57,10 @@ class AuthHandler(BaseHandler):
                 if username and password:
                     import hashlib
                     pwd = hashlib.md5(password.encode('utf-8')).hexdigest()
-                    print(pwd)
+                    #print(pwd)
                     result = DBSession.query(User).filter(User.username == username,
                                                     User.password == pwd).scalar()
-                    print(result)
+                    #print(result)
                     DBSession.close()
                     # if authres:
                      #    result = authres
@@ -69,7 +69,7 @@ class AuthHandler(BaseHandler):
                         print("success")
                         dataToken = {"id": result.id, "role": result.username, "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=3600)}
                         token = jwt.encode(dataToken,  secret_key, algorithm='HS256')
-                        print(token)
+                        #print(token)
                         status = True
                         role = result.username
                         #print("success")

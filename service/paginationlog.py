@@ -9,10 +9,11 @@
 
 from dbs.dal.LogOperate import LogOp
 import sys
-from importlib import reload
 if sys.version[0] == '2':
     reload(sys)
-    sys.setdefaultencoding('utf8')
+    sys.setdefaultencoding("utf-8")
+else:
+    from importlib import reload
 
 logselect = LogOp()
 
